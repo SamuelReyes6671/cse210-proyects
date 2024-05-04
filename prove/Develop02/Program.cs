@@ -21,6 +21,9 @@ class Program
             switch (choice)
             {
                 case "1":
+                    PromptGenerator promptGenerator = new PromptGenerator();
+                    string randomPrompt = promptGenerator.GetRandomPrompt();
+                    Console.WriteLine(randomPrompt);
                     Console.WriteLine("Enter your entry:");
                     string newEntryText = Console.ReadLine();
                     Entry newEntry = new Entry(DateTime.Now.ToString(), "Custom Prompt", newEntryText);
