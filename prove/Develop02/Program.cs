@@ -43,6 +43,7 @@ class Program
                     journal.SaveToFile(saveFileName);
                     break;
                 case "5":
+                    Console.WriteLine("Don't forget to write later... Remember YOU ARE AMAZING !!");
                     return;
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
