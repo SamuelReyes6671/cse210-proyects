@@ -3,7 +3,8 @@ public class Scripture{
 
     public Reference _reference;
     public List<Word> _words=new List<Word>();
-    public Scripture (Reference Reference , string text){
+    public Scripture (Reference Reference , string text)
+    {
         _reference = Reference;
 
         string[]wordArray=text.Split(" ");
@@ -19,6 +20,7 @@ public class Scripture{
 
         {
             int index=rand.Next(_words.Count);
+
             _words[index].Hide();
         }
     }
@@ -28,7 +30,7 @@ public class Scripture{
         foreach (Word word in _words){
             if(word.IsHidden())
             {
-                displayText+="_ _ _";
+                displayText+="_";
             }
             else
             {
@@ -36,7 +38,8 @@ public class Scripture{
             }
         }return displayText.Trim();
     }
-    public bool IsCompletelyHidden(){
+    public bool IsCompletelyHidden()
+    {
         foreach (Word word in _words){
             if (!word.IsHidden())
             return false;
