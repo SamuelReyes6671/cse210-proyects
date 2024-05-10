@@ -7,14 +7,17 @@ class Program
     {
         Reference book=new Reference("Proverbs",3,5,6);
 
-        Scripture scripture=new Scripture(book, "Trust in Jehovah with all your heart, and do not lean on your own prudence.");
+        Scripture scripture=new Scripture(book,"Trust in Jehovah with all your heart, and do not lean on your own prudence.");
 
-        int numberToHide=5;
+        int numberToHide=3;
+
         scripture.HideRandomWords(numberToHide);
 
-        string displayText=scripture.GetDisplayText();
+        Console.WriteLine(scripture.GetDisplayText());
+
         Console.WriteLine("Display Text");
-        Console.WriteLine(displayText);
+
+        
     
     
     

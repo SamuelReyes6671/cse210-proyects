@@ -6,15 +6,15 @@ public class Reference{
     private int _endVerse;
 
     public Reference(string book, int chapter, int verse){
-        _book = book;
-        _chapter = chapter;
-        _verse = verse;
+        book=_book;
+        chapter=_chapter;
+        verse=_verse;
     }
     public Reference(string book, int chapter,int strartVerse, int endVerse){
-        _book = book;
-        _chapter= chapter;
-        _verse= strartVerse;
-        _endVerse=endVerse;
+        book=_book;
+        chapter=_chapter;
+        strartVerse=_verse;
+        endVerse=_endVerse;
     }
     public string GetDisplayText(){
         return $"{_book}{_chapter}:{_verse}-{_endVerse}";
