@@ -26,11 +26,11 @@ public class Scripture{
     }
     public string GetDisplayText()
     {
-        string displayText="";
+        string displayText=" ";
         foreach (Word word in _words){
             if(word.IsHidden())
             {
-                displayText+="_";
+                displayText+=" _ ";
             }
             else
             {
