@@ -1,23 +1,60 @@
-class Activity{
-    private string _name;
-    private string _description;
-    private int _duration;
+using System;
+using System.Threading;
 
+public abstract class Activity
+{
+    protected string Name;
+    protected string Description;
+    protected int Duration; // Duration in seconds
 
-    public Activity(string name, string description, int duration){
-        _name = name;
-        _description = description;
-        _duration = duration;
+    public Activity(string name, string description)
+    {
+        Name = name;
+        Description = description;
     }
-    public void DisplayStartingMessage(){
-        Console.WriteLine("Menu Options:");
-        Console.WriteLine("1. Start breathing activity");
-        Console.WriteLine("2. Start reflecting activity");
-        Console.WriteLine("3. Start listing activity");
-        Console.WriteLine("4. Quit");
-    }
-    public void DisplayEndingMessage(){}
-    public void ShowSpinner(int seconds){}
-    public void ShowCountDowm(int seconds){}
 
+    public void Start()
+    {
+        Console.WriteLine($"Starting {Name} activity.");
+        Console.WriteLine(Description);
+        Console.Write("Enter duration (in seconds): ");
+        Duration = int.Parse(Console.ReadLine());
+        PrepareToBegin();
+        Execute();
+        End();
+    }
+
+    protected void PrepareToBegin()
+    {
+        Console.WriteLine("Prepare to begin...");
+        ShowSpinner(3);
+    }
+
+    protected void End()
+    {
+        Console.WriteLine("Good job!");
+        Console.WriteLine($"You have completed the {Name} activity for {Duration} seconds.");
+        ShowSpinner(3);
+    }
+
+    protected void ShowSpinner(int seconds)
+    {
+        for (int i = 0; i < seconds; i++)
+        {
+            Console.Write("/");
+            Thread.Sleep(250);
+            Console.Write("\b");
+            Console.Write("-");
+            Thread.Sleep(250);
+            Console.Write("\b");
+            Console.Write("\\");
+            Thread.Sleep(250);
+            Console.Write("\b");
+            Console.Write("|");
+            Thread.Sleep(250);
+            Console.Write("\b");
+        }
+    }
+
+    protected abstract void Execute();
 }

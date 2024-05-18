@@ -1,41 +1,40 @@
-using System;
-using System.Globalization;
-
-class Program
+public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop04 World!");
+        while (true)
+        {
+            Console.WriteLine("Choose an activity:");
+            Console.WriteLine("1. Breathing Activity");
+            Console.WriteLine("2. Reflection Activity");
+            Console.WriteLine("3. Listing Activity");
+            Console.WriteLine("4. Exit");
+            Console.Write("Enter your choice: ");
+            string choice = Console.ReadLine();
 
-        List<string> signos=new List<string>();
-        signos.Add("|");
-        signos.Add("/");
-        signos.Add("-");
-        signos.Add("\\");
-        signos.Add("|");
-        signos.Add("/");
-        signos.Add("-");
-        signos.Add("\\");
+            Activity activity = null;
 
-        Activity b=new Activity("Samuel","un nuevo programa",30);
-        Console.WriteLine(b.ToString());
-
-
-        DateTime startTime=DateTime.Now;
-        DateTime endTime=startTime.AddSeconds(10);
-        int i =0;
-        while (DateTime.Now<endTime){
-            string a = signos[i];
-            Console.Write(a);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-
-            i++;
-            if (i>= signos.Count){
-                i=0;
+            switch (choice)
+            {
+                case "1":
+                    activity = new BreathingActivity();
+                    break;
+                case "2":
+                    activity = new ReflectionActivity();
+                    break;
+                case "3":
+                    activity = new ListingActivity();
+                    break;
+                case "4":
+                    Console.WriteLine("Goodbye!");
+                    return;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    continue;
             }
 
+            activity.Start();
         }
-        
     }
 }
+
