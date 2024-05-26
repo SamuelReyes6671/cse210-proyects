@@ -1,12 +1,19 @@
-public class EternalGoal : Goal{
-    public EternalGoal(string name,string description,string points):base (name,description,points)
+public class EternalGoal : Goal
+{
+    public int Points { get; set; }
+
+    public EternalGoal(string shortName, string description, int points) : base(shortName, description)
     {
+        Points = points;
     }
-    public override void RecordEvent(){}
-    public override bool IsComplete(){
-        return false;
+
+    public override void RecordEvent()
+    {
+        // Eternal goals are never marked complete, so no action needed
     }
-    public override string GetStringRepresentation(){
-        return $"{ShortName}: {Desctription} ({Points})";
+
+    public override string GetStringRepresentation()
+    {
+        return $"{ShortName}: {Description} ({Points} points)";
     }
 }

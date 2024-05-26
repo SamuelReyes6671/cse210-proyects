@@ -1,18 +1,22 @@
-public abstract class Goal{
-    private string _shortName;
-    private string _description;
-    private string _points;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
-    public Goal (string name, string description, string points)
+// Base class for all types of goals
+public abstract class Goal
+{
+    public string ShortName { get; set; }
+    public string Description { get; set; }
+
+    public Goal(string shortName, string description)
     {
-        _shortName = name;
-        _description = description;
-        _points = points;
+        ShortName = shortName;
+        Description = description;
     }
 
-    public abstract void RecordEvent(){}
-    public abstract bool IsComplete(){}
-    public abstract string GetDetailsString(){}
-    public abstract string GetStringRepresentation(){}
+    // Method to record an event (achievement) for the goal
+    public abstract void RecordEvent();
 
-    }
+    // Method to get a string representation of the goal
+    public abstract string GetStringRepresentation();
+}
