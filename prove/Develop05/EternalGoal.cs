@@ -1,7 +1,5 @@
 public class EternalGoal : Goal
 {
-    public int Points { get; set; }
-
     public EternalGoal(string shortName, string description, int points) : base(shortName, description)
     {
         Points = points;
@@ -9,11 +7,11 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        // Eternal goals are never marked complete, so no action needed
+        // No es necesario registrar eventos para metas eternas
     }
 
     public override string GetStringRepresentation()
     {
-        return $"{ShortName}: {Description} ({Points} points)";
+        return $"{ShortName}: {Description} ({Points} puntos)";
     }
 }

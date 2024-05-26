@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
 public class GoalManager
 {
     private List<Goal> _goals;
@@ -9,12 +14,7 @@ public class GoalManager
         _score = 0;
     }
 
-    public void Start()
-    {
-        LoadGoals();
-        DisplayPlayerInfo();
-        ShowGoalList();
-    }
+    public List<Goal> Goals => _goals;
 
     public void DisplayPlayerInfo()
     {
@@ -23,6 +23,12 @@ public class GoalManager
 
     public void ShowGoalList()
     {
+        if (_goals.Count == 0)
+        {
+            Console.WriteLine("No goals available.");
+            return;
+        }
+
         Console.WriteLine("Your Goals:");
         foreach (var goal in _goals)
         {
@@ -35,32 +41,51 @@ public class GoalManager
         _goals.Add(goal);
     }
 
-    public void RecordEvent(Goal goal)
+    public void RecordEvent(int goalIndex)
     {
-        goal.RecordEvent();
-        _score += GetPointsForGoal(goal);
-    }
-
-    private int GetPointsForGoal(Goal goal)
-    {
-        // Additional logic to calculate points based on goal type
-        return 0;
-    }
-
-    public void SaveGoals()
-    {
-        string fileName = "goals.txt";
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        if (goalIndex < 0 || goalIndex >= _goals.Count)
         {
-            foreach (var goal in _goals)
-            {
-                outputFile.WriteLine(goal.GetStringRepresentation());
-            }
+            Console.WriteLine("Invalid goal index.");
+            return;
+        }
+
+        _goals[goalIndex].RecordEvent();
+        _score += _goals[goalIndex].Points;
+        Console.WriteLine("Event recorded successfully.");
+    }
+
+    public void SaveGoals(string fileName)
+    {
+        try
+        {
+            string json = JsonSerializer.Serialize(_goals);
+            File.WriteAllText(fileName, json);
+            Console.WriteLine("Goals saved successfully.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving goals: {ex.Message}");
         }
     }
 
-    public void LoadGoals()
+    public void LoadGoals(string fileName)
     {
-        // Load goals from file (if any)
+        try
+        {
+            if (File.Exists(fileName))
+            {
+                string json = File.ReadAllText(fileName);
+                _goals = JsonSerializer.Deserialize<List<Goal>>(json);
+                Console.WriteLine("Goals loaded successfully.");
+            }
+            else
+            {
+                Console.WriteLine("No saved goals found.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading goals: {ex.Message}");
+        }
     }
 }
