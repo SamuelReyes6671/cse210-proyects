@@ -1,8 +1,24 @@
 public class Customer{
     private string _name;
-    private string _address;
+    private Address _address;
 
-    public string Name{get;set;}
-    public string Address{get;set;}
+    public Customer(string name, Address address)
+    {
+        _name = name;
+        _address = address;
+    }
+    public bool IsInUSA()
+    {
+        return _address.IsInUSA();
+    }
+    public string GetName()
+    {
+        return _name;
+
+    }
+    public Address GetAddress()
+    {
+        return _address;
+    }
 
 }
