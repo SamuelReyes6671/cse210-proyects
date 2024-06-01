@@ -1,4 +1,3 @@
-[Serializable]
 public abstract class Goal
 {
     public string ShortName { get; set; }
@@ -9,12 +8,12 @@ public abstract class Goal
     {
         ShortName = shortName;
         Description = description;
-        Points = 0; // Inicializamos los puntos en 0
+        Points = 0; // Initialize points to 0
     }
 
-    // Método abstracto para registrar un evento relacionado con la meta
+    // Abstract method to record an event related to the goal
     public abstract void RecordEvent();
 
-    // Método abstracto para obtener una representación de cadena de la meta
+    // Abstract method to get a string representation of the goal
     public abstract string GetStringRepresentation();
 }

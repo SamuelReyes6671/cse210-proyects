@@ -2,34 +2,34 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Inicializar GoalManager
+        // Initialize GoalManager
         GoalManager goalManager = new GoalManager();
 
         bool exitProgram = false;
 
         while (!exitProgram)
         {
-            Console.WriteLine("Menú de Eternal Quest:");
-            Console.WriteLine("1. Crear nueva meta");
-            Console.WriteLine("2. Listar metas");
-            Console.WriteLine("3. Guardar metas");
-            Console.WriteLine("4. Cargar metas");
-            Console.WriteLine("5. Registrar evento");
-            Console.WriteLine("6. Salir");
+            Console.WriteLine("Eternal Quest Menu:");
+            Console.WriteLine("1. Create new goal");
+            Console.WriteLine("2. List goals");
+            Console.WriteLine("3. Save goals");
+            Console.WriteLine("4. Load goals");
+            Console.WriteLine("5. Record event");
+            Console.WriteLine("6. Exit");
 
-            Console.Write("Ingresa tu elección: ");
+            Console.Write("Enter your choice: ");
             string choice = Console.ReadLine();
 
             switch (choice)
             {
                 case "1":
-                    Console.WriteLine("Ingresa los detalles de la meta:");
-                    Console.Write("Nombre corto: ");
+                    Console.WriteLine("Enter goal details:");
+                    Console.Write("Short name: ");
                     string shortName = Console.ReadLine();
-                    Console.Write("Descripción: ");
+                    Console.Write("Description: ");
                     string description = Console.ReadLine();
                     goalManager.CreateGoal(new SimpleGoal(shortName, description, 10));
-                    Console.WriteLine("Meta creada exitosamente.");
+                    Console.WriteLine("Goal created successfully.");
                     break;
                 case "2":
                     if (goalManager.Goals.Count > 0)
@@ -38,52 +38,52 @@ class Program
                     }
                     else
                     {
-                        Console.WriteLine("No hay metas para mostrar. Crea nuevas metas primero.");
+                        Console.WriteLine("No goals to display. Create new goals first.");
                     }
                     break;
                 case "3":
-                    Console.Write("Ingresa el nombre de archivo para guardar las metas (por ejemplo, metas.txt): ");
+                    Console.Write("Enter file name to save goals to (e.g., goals.txt): ");
                     string saveFileName = Console.ReadLine();
                     goalManager.SaveGoals(saveFileName);
-                    Console.WriteLine("Metas guardadas exitosamente.");
+                    Console.WriteLine("Goals saved successfully.");
                     break;
                 case "4":
-                    Console.Write("Ingresa el nombre de archivo para cargar las metas desde (por ejemplo, metas.txt): ");
+                    Console.Write("Enter file name to load goals from (e.g., goals.txt): ");
                     string loadFileName = Console.ReadLine();
                     goalManager.LoadGoals(loadFileName);
-                    Console.WriteLine("Metas cargadas exitosamente.");
+                    Console.WriteLine("Goals loaded successfully.");
                     break;
                 case "5":
                     if (goalManager.Goals.Count > 0)
                     {
-                        Console.WriteLine("Selecciona una meta para registrar un evento:");
+                        Console.WriteLine("Select a goal to record an event:");
                         goalManager.ShowGoalList();
-                        Console.Write("Ingresa el índice de la meta: ");
+                        Console.Write("Enter goal index: ");
                         if (int.TryParse(Console.ReadLine(), out int selectedIndex) && selectedIndex >= 0 && selectedIndex < goalManager.Goals.Count)
                         {
                             goalManager.RecordEvent(selectedIndex);
-                            Console.WriteLine("Evento registrado exitosamente para la meta seleccionada.");
+                            Console.WriteLine("Event recorded successfully for the selected goal.");
                         }
                         else
                         {
-                            Console.WriteLine("Índice de meta no válido. Por favor, ingresa un índice válido.");
+                            Console.WriteLine("Invalid goal index. Please enter a valid index.");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("No hay metas disponibles para registrar un evento. Crea nuevas metas primero.");
+                        Console.WriteLine("No goals available to record an event. Create new goals first.");
                     }
                     break;
                 case "6":
                     exitProgram = true;
-                    Console.WriteLine("Saliendo de Eternal Quest. ¡Hasta luego!");
+                    Console.WriteLine("Exiting Eternal Quest. Goodbye!");
                     break;
                 default:
-                    Console.WriteLine("Opción no válida. Por favor, ingresa un número entre 1 y 6.");
+                    Console.WriteLine("Invalid option. Please enter a number between 1 and 6.");
                     break;
             }
 
-            Console.WriteLine(); // Agregar una nueva línea para mayor legibilidad
+            Console.WriteLine(); // Add a new line for readability
         }
     }
 }

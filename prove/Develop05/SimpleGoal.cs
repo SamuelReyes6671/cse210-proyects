@@ -7,11 +7,11 @@ public class SimpleGoal : Goal
 
     public override void RecordEvent()
     {
-        // No es necesario registrar eventos para metas simples
+        // No need to record events for simple goals
     }
 
     public override string GetStringRepresentation()
     {
-        return $"{ShortName}: {Description} ({Points} puntos)";
+        return $"{ShortName}: {Description} ({Points} points)";
     }
 }

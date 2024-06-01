@@ -7,11 +7,11 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        // No es necesario registrar eventos para metas eternas
+        // No need to record events for eternal goals
     }
 
     public override string GetStringRepresentation()
     {
-        return $"{ShortName}: {Description} ({Points} puntos)";
+        return $"{ShortName}: {Description} ({Points} points)";
     }
 }

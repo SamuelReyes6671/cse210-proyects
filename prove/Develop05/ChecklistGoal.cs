@@ -18,6 +18,6 @@ public class ChecklistGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return $"{ShortName}: {Description} (Completado {_amountCompleted}/{Target} veces)";
+        return $"{ShortName}: {Description} (Completed {_amountCompleted}/{Target} times)";
     }
 }
